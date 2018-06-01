@@ -1,0 +1,4 @@
+If we need to resume the execution, we call again the next method. 
+Every time we call the method, it returns the current state of a function with a yield value and the done property.
+This property stores a boolean value, by which we can determine 
+if the whole generator function has been executed—all yield values has been received.

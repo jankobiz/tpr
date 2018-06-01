@@ -1,0 +1,8 @@
+/node_modules
+/.vscode
+/logs
+.vscode
+/nbproject/private/
+logger.log
+log.log
+output.txt
