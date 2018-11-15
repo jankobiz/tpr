@@ -1,26 +1,10 @@
 
 const request = require('request-promise');
 
-const urls = ['http://localhost:3000/autogf/v1/sites?pageSize=10&page=1&gfStatus=synced',
-	'http://localhost:3000/autogf/v1/sites?pageSize=10&page=1&gfStatus=synced',
-	'http://localhost:3000/autogf/v1/sites?pageSize=10&page=1&gfStatus=synced',
-	'http://localhost:3000/autogf/v1/sites?pageSize=10&page=1&gfStatus=synced',
-	'http://localhost:3000/autogf/v1/sites?pageSize=10&page=1&gfStatus=synced',
-	'http://localhost:3000/autogf/v1/sites?pageSize=10&page=1&gfStatus=synced',
-	'http://localhost:3000/autogf/v1/sites?pageSize=10&page=1&gfStatus=synced',
-	'http://localhost:3000/autogf/v1/sites?pageSize=10&page=1&gfStatus=synced',
-	'http://localhost:3000/autogf/v1/sites?pageSize=10&page=1&gfStatus=synced',
-	'http://localhost:3000/autogf/v1/sites?pageSize=10&page=1&gfStatus=synced',
-	'http://localhost:3000/autogf/v1/sites?pageSize=10&page=1&gfStatus=synced',
-	'http://localhost:3000/autogf/v1/sites?pageSize=10&page=1&gfStatus=synced',
-	'http://localhost:3000/autogf/v1/sites?pageSize=10&page=1&gfStatus=synced',
-	'http://localhost:3000/autogf/v1/sites?pageSize=10&page=1&gfStatus=synced',
-	'http://localhost:3000/autogf/v1/sites?pageSize=10&page=1&gfStatus=synced',
-	'http://localhost:3000/autogf/v1/sites?pageSize=10&page=1&gfStatus=synced',
-	'http://localhost:3000/autogf/v1/sites?pageSize=10&page=1&gfStatus=synced'];
+const urls = [];
 
 // const urls = [];
-for (let i = 1; i <= 100; i++) {
+for (let i = 1; i <= 10; i++) {
 	urls.push('http://localhost:3000/autogf/v1/sites?pageSize=10&page=1&gfStatus=synced');
 }
 // console.log(urlss);

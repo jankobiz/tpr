@@ -27,6 +27,7 @@
     "rxjs": "^5.5.2",
     "rxjs-es": "^5.0.0-beta.12",
     "sentence-similarity": "^1.0.7",
-    "shelljs": "^0.7.8"
+    "shelljs": "^0.7.8",
+    "uuid": "^3.3.2"
   }
 }
