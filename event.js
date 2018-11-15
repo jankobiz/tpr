@@ -28,8 +28,8 @@ apiCall(1, err => console.log(err.message));
 class TheEmitter extends EventEmitter {}
 
 class AnotherEmitter extends EventEmitter {
-	constructor() {
 
+	constructor() {
 	}
 }
 

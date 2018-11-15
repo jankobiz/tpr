@@ -1,0 +1,2 @@
+let
+.match(/\S+/g);
