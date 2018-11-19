@@ -1,7 +1,7 @@
 const uuidv1 = require('uuid/v1');
 
 // console.log(Buffer.from('Hello World').toString('base64'));
-// console.log(uuidv1());
+console.log(uuidv1());
 // console.log(Buffer.from(uuidv1()).toString('base64'));
 const credJSON = {
 	user: 'user',
