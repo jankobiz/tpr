@@ -50,10 +50,11 @@ const mysqlConnectKnex = require('knex')({
 
 const uniqueTokenToMarkParameters = 'd177ce10-cc80-11e8-a994-eb4a5af7e834';
 
-const migrateData = async () => {
+const migrateData = async (range) => {
     const siteid = '3b5fad211c';
 	try {
-		// await MSSQL.connect(CsDb.connection);
+        // await MSSQL.connect(CsDb.connection);
+        MSSQL.close();
 		const mysqlConnection = MYSQL.createConnection(mysqlDB.connection);
 		await mysqlConnection.connect();
 		console.log('Connected to MySQL!');
@@ -66,8 +67,12 @@ const migrateData = async () => {
             const request = new MSSQL.Request();
             request.stream = true; // You can set streaming differently for each request
             // request.query('select top 500000 * from testsites order by siteid'); // or request.execute(procedure)
-            request.query('SELECT  * FROM (SELECT TOP 4000000 t.*, ROW_NUMBER() OVER (ORDER BY siteid) AS rownumber FROM testsites t ORDER BY siteid) t WHERE rownumber > 1300000 and rownumber <= 1400000');
-            // request.query("select * from testsites where siteid = '4989d35b21'");
+            // request.query('SELECT  * FROM (SELECT TOP 4000000 t.*, ROW_NUMBER() OVER (ORDER BY siteid) AS rownumber FROM testsites t ORDER BY siteid) t WHERE rownumber > 1300000 and rownumber <= 1400000');
+            const min = range;
+            const max = range + 100000;
+            const query = `SELECT  * FROM (SELECT TOP 4000000 t.*, ROW_NUMBER() OVER (ORDER BY siteid) AS rownumber FROM testsites t ORDER BY siteid) t WHERE rownumber > ${min} and rownumber <= ${max}`;
+            console.log('QUERY', query);
+            request.query(query);
             let i = 0;
             request.on('row', (row) => {
                 // const r = JSON.parse(row);
@@ -106,7 +111,8 @@ const migrateData = async () => {
                 // const checkInsert = await mysqlConnection.query('select * from localtestsites');
                 // console.log('SELECT MYSQL', checkInsert);
                 let sqlQueryParams = [];
-                let q = mysqlConnectKnex('localtestsites').insert(row);
+                // let q = mysqlConnectKnex('localtestsites').insert(row);
+                let q = mysqlConnectKnex('bulktestsites').insert(row);
                 sqlQueryParams = sqlQueryParams.concat(q.toSQL().bindings);
                 q = q.toSQL().sql;
                 q = q.replace(/\?/g, uniqueTokenToMarkParameters);
@@ -159,4 +165,15 @@ const migrateData = async () => {
 	}
 };
 
-migrateData();
+// migrateData();
+
+let timeout = 0;
+let i = 0;
+for (i = 0; i < 36; i++) {
+    (function (ind) {
+        console.log(`Method with delay ${timeout} started`);
+    setTimeout(() => {
+        migrateData(ind * 100000);
+    }, timeout);}(i));
+    timeout += 900000;
+}
