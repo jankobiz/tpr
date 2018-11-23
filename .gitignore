@@ -6,3 +6,5 @@
 logger.log
 log.log
 output.txt
+*.log
+*.rar
