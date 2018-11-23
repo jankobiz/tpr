@@ -76,8 +76,8 @@ const migrateData = async (rangeBegining) => {
 		// process.exit(1);
 		MSSQL.connect(CsDb.connection, (err) => {
 			if (err) {
-
-		}
+				logger.error('MS SQL connection error', err);
+			}
             const request = new MSSQL.Request();
             request.stream = true;
             let min = rangeBegining;
@@ -151,8 +151,8 @@ const migrateData = async (rangeBegining) => {
                 // setTimeout(() => {
 				mysqlConnection.query(q, (error) => {
 					if (error) {
-						console.log('MYSQL Error ocurred: ', error);
-						logger.error('Hello world');
+						// console.log('MYSQL Error ocurred: ', error);
+						logger.error('MYSQL Error ocurred: ', error);
                     }
 				});
                 i += 1;
